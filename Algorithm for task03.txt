@@ -1,0 +1,43 @@
+Algorithm for pwd_check.py
+
+1. Function `assess_password_strength(password)`:
+   - Input: `password` (string)
+   - Output: `strength_level` (string), `feedback` (string)
+
+   1.1. Initialize criteria checks:
+       - `length`: Check if `len(password) >= 8`.
+       - `uppercase`: Check if at least one character `char` in `password` satisfies `char.isupper()`.
+       - `lowercase`: Check if at least one character `char` in `password` satisfies `char.islower()`.
+       - `digits`: Check if at least one character `char` in `password` satisfies `char.isdigit()`.
+       - `special`: Check if at least one character `char` in `password` is in "!@#$%^&*()-_+=".
+
+   1.2. Store results of each criterion in a list `criteria`.
+
+   1.3. Calculate `strength` as the sum of `criteria`.
+
+   1.4. Determine `strength_level` and provide `feedback` based on `strength` and individual criteria:
+       - If all criteria are `True`, set `strength_level` to "Very Strong" and `feedback` to "Excellent password!".
+       - If three criteria are `True`, set `strength_level` to "Strong" and `feedback` to "Strong password!".
+       - If two criteria are `True`, set `strength_level` to "Moderate" and `feedback` to "Not bad, but could be better.".
+       - If one criterion is `True`, set `strength_level` to "Weak" and `feedback` to "Weak password, try adding more variety.".
+       - If no criteria are met, set `strength_level` to "Very Weak" and provide specific `feedback` based on which criteria are not met:
+         - If `length` is `False`, update `feedback` to "Password too short, use 8+ characters.".
+         - If `uppercase` is `False`, update `feedback` to "Add an uppercase letter.".
+         - If `lowercase` is `False`, update `feedback` to "Add a lowercase letter.".
+         - If `digits` is `False`, update `feedback` to "Add a digit.".
+         - If `special` is `False`, update `feedback` to "Add a special character (!@#$%^&*()-_+=).".
+
+   1.5. Return `strength_level` and `feedback`.
+
+2. Function `main()`:
+   - Initialize the program:
+     - Print "Password Strength Assessment Tool".
+
+   - Enter an infinite loop to interact with the user:
+     - Prompt the user to input a password or enter 'q' to quit.
+
+     - If user input is 'q', print "Goodbye!" and exit the loop.
+
+     - Otherwise, call `assess_password_strength(password)` with the user input to evaluate the password.
+
+     - Print `strength_level` and `feedback` to provide immediate feedback to the user.
